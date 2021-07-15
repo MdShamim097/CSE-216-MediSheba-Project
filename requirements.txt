@@ -1,0 +1,6 @@
+asgiref==3.2.10
+cx-Oracle==8.0.0
+django>=3.1.6
+pytz==2020.1
+sqlparse==0.3.1
+cryptography>=3.3.2

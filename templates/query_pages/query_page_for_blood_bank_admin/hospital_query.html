@@ -1,0 +1,87 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/doctor_query.css' %}">
+    <title>Search Hospitals</title>
+</head>
+<body style="background-color: #dde3d3">
+<div class="container">
+    <div class="row pt-1 pb-1">
+        <div class="col-lg-12">
+            <h4 class="text-center"> Search for Hospitals</h4>
+        </div>
+    </div>
+</div>
+<section class="search-sec bottom-space-1">
+    <div class="container">
+        <form action="custom_search_for_hospital_by_bloodbank" method="post" novalidate="novalidate">
+        {% csrf_token %}
+            <div class="row">
+
+
+                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                    <select class="form-control search-slt" id="select_area" name="select_area">
+                        <option selected disabled>Select Area</option>
+                        {% for i in opt %}
+                        <option>{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                    <button type="submit" class="btn btn-danger wrn-btn">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="search_result bottom-space-1 center">
+    <div>
+        <h3>Search Result</h3>
+    </div>
+</section>
+<section class="table-sec bottom-space">
+    <table class="table table-hover table-dark" border="1">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Location</th>
+        </tr>
+        </thead>
+
+        {% for d in hos %}
+            <tr>
+            <td>{{ d.id }}</td>
+            <td>{{ d.name }}</td>
+            <td>{{ d.phone }}</td>
+            <td>{{ d.location }}</td>
+                <td>
+                <form action="see_specific_hospital_details" method="post">{% csrf_token %}
+                    <button type="submit" class="btn btn-danger wrn-btn">See Details</button>
+                    <input type="hidden" id="{{ d.hospital_id }}" name="hospital_id" value="{{ d.hospital_id }}">
+                </form>
+            </td>
+            </tr>
+        {% endfor %}
+    </table>
+</section>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

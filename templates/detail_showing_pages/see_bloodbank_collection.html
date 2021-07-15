@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>{{ name }}</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/profile_editor_css.css' %}">
+</head>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<body>
+<form action="#" method="post">
+    {% csrf_token %}
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="{% static 'images/blood-bank.png' %}" width="128" height="128">
+                    <span> {{ name }} </span>
+                </div>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Blood Bank Stock</h4>
+                    </div>
+
+                    <section class="table-sec bottom-space">
+        <table class="table table-hover table-dark" border="1">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Blood Group</th>
+                    <th scope="col">Amount</th>
+                </tr>
+            </thead>
+        <tr>
+            <td>1</td>
+            <td>A+</td>
+            <td>{{ a_pos }}</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>A-</td>
+            <td>{{ a_neg }}</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>B+</td>
+            <td>{{ b_pos }}</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>B-</td>
+            <td>{{ b_neg }}</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>AB+</td>
+            <td>{{ ab_pos }}</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>AB-</td>
+            <td>{{ ab_neg }}</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>O+</td>
+            <td>{{ o_pos }}</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>O-</td>
+            <td>{{ o_neg }}</td>
+        </tr>
+
+    </table>
+</section>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+</form>
+</body>
+

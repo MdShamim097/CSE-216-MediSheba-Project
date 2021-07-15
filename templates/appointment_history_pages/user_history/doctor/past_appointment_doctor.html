@@ -1,0 +1,64 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/doctor_query.css' %}">
+    <title>Past Appointment of Doctor</title>
+</head>
+<body style="background-color: #dde3d3">
+<div class="container">
+    <div class="row pt-1 pb-1">
+        <div class="col-lg-12">
+            <h4 class="text-center">Past Appointment of Doctor</h4>
+        </div>
+    </div>
+</div>
+
+<section class="table-sec bottom-space">
+    <table class="table table-hover table-dark" border="1">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Problem and Prescription</th>
+        </tr>
+        </thead>
+
+        {% for app in past_appointment %}
+            <tr>
+            <td>{{ app.index }}</td>
+            <td>{{ app.doc_f_name }}</td>
+            <td>{{ app.doc_l_name }}</td>
+            <td>{{ app.appointment_time }}</td>
+            <td>
+                <form action="check_users_prescription" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger wrn-btn">Problem and Prescription</button>
+                    <input type="hidden" id="{{ app.doc_id }}" name="doc_id" value="{{ app.doc_id }}">
+                    <input type="hidden" id="{{ app.user_id }}" name="user_id" value="{{ app.user_id }}">
+                    <input type="hidden" id="{{ app.appointment_time }}" name="appointment_time" value="{{ app.appointment_time }}">
+                </form>
+            </td>
+
+            </tr>
+        {% endfor %}
+    </table>
+</section>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

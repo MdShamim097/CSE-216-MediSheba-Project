@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>Edit Personal Details</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <link rel="stylesheet" href="{% static 'css/profile_editor_css.css' %}">
+</head>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<body>
+<form action="submit_changed_blood_group_collection" method="post">
+    {% csrf_token %}
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="{% static 'images/blood-bank.png' %}" width="128" height="128">
+                <span class="font-weight-bold">Blood Group Update</span>
+                <span> {{ name }} </span>
+            </div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Blood Group Update</h4>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">A+</label><input type="text" class="form-control" placeholder="A+" value="" id="a_pos" name="a_pos"></div>
+                    <div class="col-md-12"><label class="labels">A-</label><input type="text" class="form-control" placeholder="A-" value="" id="a_neg" name="a_neg"></div>
+                    <div class="col-md-12"><label class="labels">B+</label><input type="text" class="form-control" placeholder="B+" value="" id="b_pos" name="b_pos"></div>
+                    <div class="col-md-12"><label class="labels">B-</label><input type="text" class="form-control" placeholder="B-" value="" id="b_neg" name="b_neg"></div>
+                    <div class="col-md-12"><label class="labels">AB+</label><input type="text" class="form-control" placeholder="AB+" value="" id="ab_pos" name="ab_pos"></div>
+                    <div class="col-md-12"><label class="labels">AB-</label><input type="text" class="form-control" placeholder="AB-" value="" id="ab_neg" name="ab_neg"></div>
+                    <div class="col-md-12"><label class="labels">O+</label><input type="text" class="form-control" placeholder="O+" value="" id="o_pos" name="o_pos"></div>
+                    <div class="col-md-12"><label class="labels">O-</label><input type="text" class="form-control" placeholder="O-" value="" id="o_neg" name="o_neg"></div>
+
+
+                </div>
+            <!---
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Age</label><input type="text" class="form-control" value="" placeholder="Age" id="age" name="fee"></div>
+                    <div class="col-md-12"><label class="labels">Height</label><input type="text" class="form-control" value="" placeholder="Height" id="height" name="fee"></div>
+                    <div class="col-md-12"><label class="labels">Weight</label><input type="text" class="form-control" value="" placeholder="Weight" id="weight" name="fee"></div>
+                </div>
+               --->
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">ADD</button></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience"><span></span></div><br>
+                <!--
+                <div class="col-md-12"><label class="labels">Notes</label><input type="text" class="form-control" placeholder="Something to be noted" value="" id="additional_details" name="additional_details"></div>
+
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</form>
+</body>
+
+</html>

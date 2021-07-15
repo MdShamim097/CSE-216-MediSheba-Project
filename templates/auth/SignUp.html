@@ -1,0 +1,60 @@
+{% load static %}
+<html>
+    <head>
+        <title>
+            Sign Up
+        </title>
+       <link rel="stylesheet" href="{% static 'css/signUp.css' %}">
+    </head>
+    <body>
+        <div>Welcome</div>
+        <h1>Sign Up Here!</h1>
+        <form action="signupSubmit" method="post">
+            {% csrf_token %}
+            <h1>Usertype:
+            <label for="User"></label>
+            <select id="User" name="User" class="block">
+                <option value="user" >General User</option>
+                <option value="doctor" >Doctor</option>
+                <option value="hospitalAdmin" >Hospital Admin</option>
+                <option value="bloodbankAdmin" >Blood Bank Admin</option>
+            </select>
+            </h1><br>
+            <h1>First Name:
+            <label for="fname" class="block"></label>
+            <input type="text" id="fname" name="fname" class="block"></h1><br>
+            <h1>Last Name:
+            <label for="lname" class="block"></label>
+            <input type="text" id="lname" name="lname" class="block"></h1><br>
+            <h1>Email:
+            <label for="email" class="block"></label>
+            <input type="text" id="email" name="email" class="block"></h1><br>
+            <h1>Phone No.
+            <label for="phone" class="block"></label>
+            <input type="text" id="phone" name="phone" class="block"></h1><br>
+            <h1>Password:
+            <label for="pass"></label>
+            <input type="password" id="pass" name="pass" class="block"></h1><br>
+            <h1>Confirm Password:
+            <label for="cpass"></label>
+            <input type="password" id="cpass" name="cpass" class="block"></h1><br>
+            <h1>Company Name
+            <label for="company" class="block"></label>
+            <input type="text" id="company" name="company" class="block"></h1><br>
+            <h1>Gender:
+            <label for="Gender"></label>
+            <select id="Gender" name="Gender" class="block">
+                <option value="male" >Male</option>
+                <option value="female" >Female</option>
+            </select>
+            </h1><br>
+
+
+            <h1>{{ error_message }}</h1>
+            <br>
+            <h1>
+            <button class="block" type="submit">Submit</button>
+            </h1>
+        </form>
+    </body>
+</html>

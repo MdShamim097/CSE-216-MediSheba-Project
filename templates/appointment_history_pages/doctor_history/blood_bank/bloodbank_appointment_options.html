@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>Doctor Appointment</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/forsearch.css' %}">
+</head>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<body style="background-color: #dde3d3">
+
+    <div class="main">
+        <div class="row">
+            <div class="col-md-4">
+                <a href="{% url 'past_appointment_of_bloodbank_by_doctor' %}">
+                <div class="one">
+                    <div class="px-2 pb-3">
+
+                        <div><img src="{% static 'images/tick-mark.png' %}" width="150" /></div>
+
+                        <div>
+                            <h4 class="project">Past Appointments</h4>
+                            <p class="quote2"><div style="text-align: center;">Show list past appointments</div></p>
+                        </div>
+                    </div>
+                </div>
+                 </a>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <a href="{% url 'pending_appointment_of_bloodbank_by_doctor' %}">
+                <div class="one">
+                    <div class="px-2 pb-3">
+
+                        <div><img src="{%static 'images/pending.png' %}" width="150" /></div>
+
+                        <div>
+                            <h4 class="project">Pending Appointments</h4>
+                            <p class="quote2"><div style="text-align: center;">Show list of pending appointments</div></p>
+                        </div>
+                    </div>
+                </div>
+                 </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

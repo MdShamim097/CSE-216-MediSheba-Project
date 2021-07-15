@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>Edit Personal Details</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <link rel="stylesheet" href="{% static 'css/profile_editor_css.css' %}">
+</head>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<body>
+<form action="submit_changed_profile_bloodbank" method="post">
+    {% csrf_token %}
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="{% static 'images/user.png' %}" width="128" height="128">
+                <span class="font-weight-bold">Change Profile Settings</span>
+                <span> {{ name }} </span>
+            </div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Bloodbank  Admin Profile Settings </h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">First Name</label><input type="text" class="form-control" placeholder="First Name" value="" id="f_name" name="f_name"></div>
+                    <div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" value="" placeholder="Last Name" id="l_name" name="l_name"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Phone Number</label><input type="text" class="form-control" placeholder="Phone" value="" id="phone" name="phone"></div>
+                    <div class="col-md-12"><label class="labels" >Location</label>
+                        <select id="address" name="address" class="form-control">
+                            <option selected disabled>Select Your District</option>
+                            {% for loc in locations %}
+                                <option>{{ loc }}</option>
+                            {% endfor %}
+                        </select></div>
+                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Email" value="" id="email" name="email"></div>
+                    <!---<div class="col-md-12"><label class="labels">Blood Group</label>
+                        <select id="blood_type" name="blood_type" class="form-control">
+                            <option value="A+" >A+</option>
+                            <option value="A-" >A-</option>
+                            <option value="B+" >B+</option>
+                            <option value="B-" >B-</option>
+                            <option value="AB+" >AB+</option>
+                            <option value="AB-" >AB-</option>
+                            <option value="O+" >O+</option>
+                            <option value="O-" >O-</option>
+                        </select>
+                    </div>--->
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels"></label>
+                        <div class="row mt-2">
+                    <div class="col-md-12"><label class="labels">BloodBank Name</label><input type="text" class="form-control" placeholder="Name" value="" id="name" name="name"></div>
+
+                </div>
+                    </div>
+                    <!---<div class="col-md-12"><label class="labels">Fees</label><input type="text" class="form-control" value="" placeholder="Fees" id="fee" name="fee"></div>--->
+                </div>
+
+                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+            </div>
+        </div>
+        <!---<div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span></div><br>
+                <div class="col-md-12"><label class="labels">Specialization</label><input type="text" class="form-control" placeholder="specialization" value="" id="specialization" name="specialization"></div> <br>
+                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value="" id="additional_details" name="additional_details"></div>
+            </div>
+        </div>--->
+    </div>
+</div>
+</div>
+</div>
+</form>
+</body>
+
+</html>

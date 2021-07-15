@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>Service Homepage</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/forsearch.css' %}">
+</head>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<body style="background-color: #dde3d3">
+
+    <div class="main">
+        <div class="row">
+            <div class="col-md-4">
+                <a href="{% url 'search_doctors_by_user' %}">
+                <div class="one">
+                    <div class="px-2 pb-3">
+
+                       <!-- <div><img src="https://th.bing.com/th/id/OIP.4RS1FXwM43hwpDx4pS-7NAHaF1?pid=Api&w=203&h=160.0979381443299&c=7&dpr=1.25" width="150" /></div> -->
+                        <div><img src="{% static 'images/doctor.png' %}" width="150" /></div>
+
+                        <div>
+                            <h4 class="project">DOCTORS </h4>
+                            <p class="quote2"><div style="text-align: center;">Search for available doctors</div></p>
+                        </div>
+                    </div>
+                </div>
+                 </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'search_hospitals_by_users' %}">
+                <div class="one">
+                    <div class="px-2 pb-3">
+
+                        <!-- <div><img src="https://th.bing.com/th/id/OIP.wBZ4E2bF4qJwHDKcAo6ehQHaEK?pid=Api&w=202.99999999999997&h=134.45454545454544&c=7&dpr=1.25" width="200" /></div> -->
+                        <div><img src="{% static 'images/hospital.png' %}" width="150" /></div>
+                        <div>
+                            <h4 class="project">HOSPITALS </h4>
+                            <p class="quote2"><div style="text-align: center;">Search for available hospitals</div></p>
+                        </div>
+                    </div>
+                </div>
+                 </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'search_blood_banks_by_user' %}">
+                <div class="one">
+                    <div class="px-2 pb-3">
+
+                      <!--  <div><img src="https://propiece.s3-ap-northeast-1.amazonaws.com/product_image/20200710081732-00001617-blood.jpg" width="200" /></div> -->
+                        <div><img src="{% static 'images/blood-bank.png' %}" width="150" /></div>
+
+                        <div>
+                            <h4 class="project">BLOOD_BANK</h4>
+                            <p class="quote2"><div style="text-align: center;">Search for available blood_banks</div></p>
+                        </div>
+                    </div>
+                </div>
+                 </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

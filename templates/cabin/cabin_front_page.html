@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>Cabin Management</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/forsearch.css' %}">
+</head>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<body style="background-color: #dde3d3">
+
+    <div class="main">
+        <div class="row">
+            <div class="col-md-4">
+                <a href="{% url 'add_cabin_to_hospital' %}">
+                <div class="one">
+                    <div class="px-2 pb-3">
+
+                        <div><img src="{% static 'images/add_hospital_cabin.png' %}" width="150" /></div>
+
+                        <div>
+                            <h4 class="project">Add Cabins</h4>
+                            <p class="quote2"><div style="text-align: center;">Add cabins to your hospital</div></p>
+                        </div>
+                    </div>
+                </div>
+                 </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'check_cabin_history' %}">
+                <div class="one">
+                    <div class="px-2 pb-3">
+
+                        <div><img src="{% static 'images/history-clock-button.png' %}" width="150" /></div>
+                        <div>
+                            <h4 class="project">Cabin History</h4>
+                            <p class="quote2"><div style="text-align: center;">Check Cabin History</div></p>
+                        </div>
+                    </div>
+                </div>
+                 </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'check_occupied_cabin' %}">
+                <div class="one">
+                    <div class="px-2 pb-3">
+
+                        <div><img src="{%static 'images/occupied_bed.png' %}" width="200" /></div>
+
+                        <div>
+                            <h4 class="project">Occupied Cabin</h4>
+                            <p class="quote2"><div style="text-align: center;">Find Occupied Cabins</div></p>
+                        </div>
+                    </div>
+                </div>
+                 </a>
+            </div>
+            <div class="col-md-4">
+                <a href="{% url 'check_cabin_pending_appointments' %}">
+                <div class="one">
+                    <div class="px-2 pb-3">
+
+                        <div><img src="{%static 'images/pending.png' %}" width="150" /></div>
+
+                        <div>
+                            <h4 class="project">Pending Appointments</h4>
+                            <p class="quote2"><div style="text-align: center;">Find Pending Appointments</div></p>
+                        </div>
+                    </div>
+                </div>
+                 </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

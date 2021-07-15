@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Approvals</title>
+</head>
+<body>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Request No</th>
+        <th scope="col">Name</th>
+
+        <th scope="col">Blood Type</th>
+        <th scope="col">Amount (bags) </th>
+        <th scope="col">Pending Status </th>
+
+    </tr>
+    </thead>
+    <tbody>
+{% for d in user_details %}
+            <tr>
+            <td>{{ d.id }}</td>
+            <td>{{ d.name }}</td>
+            <td>{{ d.blood_group }}</td>
+            <td>{{ d.amount }}</td>
+                <td>{{ d.pending_status }}</td>
+                <td>
+                <form action="bloodbank_pending_status_changed" method="post">{% csrf_token %}
+                    <button type="submit" class="btn btn-danger wrn-btn">{{d.pending_status}}</button>
+                    <input type="hidden" id="{{ d.blood_bank_id }}" name="blood_bank_id" value="{{ d.blood_bank_id }}">
+                    <input type="hidden" id="{{ d.user_id }}" name="user_id" value="{{ d.user_id }}">
+                    <input type="hidden" id="{{ d.amount }}" name="amount" value="{{ d.amount }}">
+                    <input type="hidden" id="{{ d.blood_group }}" name="blood_group" value="{{ d.blood_group }}">
+
+                </form>
+            </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

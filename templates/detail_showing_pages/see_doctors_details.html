@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>{{ name }}</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/profile_editor_css.css' %}">
+</head>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<body>
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="{% static 'images/doctor.png' %}" width="128" height="128">
+                    <span> {{ name }} </span>
+                </div>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Doctor's Profile</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">First Name</label><h4>{{ first_name }}</h4></div>
+                        <div class="col-md-6"><label class="labels">Last Name</label><h4>{{ last_name }}</h4></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Phone</label><h4>{{ phone }}</h4></div>
+                        <div class="col-md-12"><label class="labels" >Location</label><h4>{{ location }}</h4></div>
+                        <div class="col-md-12"><label class="labels">Email</label><h4>{{ email }}</h4></div>
+
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Hospital Name</label>
+                            <h4>{{ hospital_name }}</h4>
+                        </div>
+                        <div class="col-md-12"><label class="labels">Fees</label><h4>{{ fees }}</h4></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center experience"><span><h4>Experiences And Appointments</h4></span></div><br>
+                    <div class="col-md-12">
+                        <label class="labels">Specialization</label>
+                        <h4>{{ specialization }}</h4>
+                    </div>
+                    <br>
+                    <form name = "submit_appointment_for_doctor_by_doctor" action="submit_appointment_for_doctor_by_doctor" method="post" onsubmit="return validate()">
+                        {% csrf_token %}
+                        <div class="col-md-12">
+                            <label class="labels"><h4>Get An Appointment</h4></label><br>
+                        </div>
+                         <div class="coc-form">
+                              <div class="coc-block-row">
+                                   <label class="coc-block-label" for="entrydate">SELECT A DATE</label>
+                              </div>
+                              <div class="coc-block">
+                                   <input class="form-control" type="date" name="appointment_date" id="appointment_date" value="Not Specified">
+                              </div>
+
+                         </div>
+                        <div class="mt-5 text-center">
+                            <button class="btn btn-primary profile-button" type="submit">Submit</button>
+                            <h6>{{ msg }}</h6>
+                            <input type="hidden" id="{{ doctor_id }}" name="doctor_id" value="{{ doctor_id }}">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+<script>
+    function validate(){
+        var date = document.forms["submit_appointment_for_doctor_by_user"]["appointment_date"].value;
+        if (date === ""){
+            alert("SELECT A DATE");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    function format_date(date){
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = ''+d.getDate(),
+            year = d.getFullYear();
+        if(month.length<2){
+            month = '0' + month;
+        }
+        if(day.length<2){
+            day = '0' + day;
+        }
+        return [year,month,day].join('-')
+    }
+
+    var x = format_date(new Date())
+    document.getElementById("appointment_date").min = x;
+</script>
+</html>

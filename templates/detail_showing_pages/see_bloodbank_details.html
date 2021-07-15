@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>{{ name }}</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/profile_editor_css.css' %}">
+</head>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<body>
+<form action="submit_blood_bank_appointment" method="post">
+    {% csrf_token %}
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="{% static 'images/blood-bank.png' %}" width="128" height="128">
+                    <span> {{ name }} </span>
+                </div>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Bloodbank Details</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Name</label><h4>{{ name }}</h4></div>
+
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Phone</label><h4>{{ phone }}</h4></div>
+                        <div class="col-md-12"><label class="labels" >Location</label><h4>{{ location }}</h4></div>
+                        <div class="col-md-12"><label class="labels">Email</label><h4>{{ email }}</h4></div>
+                        <!--
+                        <div class="col-md-12"><label class="labels">A+</label><h4>{{ a_pos }}</h4></div>
+                        <div class="col-md-12"><label class="labels">A-</label><h4>{{ a_neg }}</h4></div>
+                        <div class="col-md-12"><label class="labels">B+</label><h4>{{ b_pos }}</h4></div>
+                        <div class="col-md-12"><label class="labels">B-</label><h4>{{ b_neg }}</h4></div>
+                        <div class="col-md-12"><label class="labels">AB+</label><h4>{{ ab_pos }}</h4></div>
+                        <div class="col-md-12"><label class="labels">AB-</label><h4>{{ ab_neg }}</h4></div>
+                        <div class="col-md-12"><label class="labels">O+</label><h4>{{ o_pos }}</h4></div>
+                        <div class="col-md-12"><label class="labels">O-</label><h4>{{ o_neg }}</h4></div>
+                        -->
+                                <table class="table table-hover table-dark" border="1">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Blood Group</th>
+                    <th scope="col">Amount</th>
+                </tr>
+            </thead>
+        <tr>
+            <td>1</td>
+            <td>A+</td>
+            <td>{{ a_pos }}</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>A-</td>
+            <td>{{ a_neg }}</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>B+</td>
+            <td>{{ b_pos }}</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>B-</td>
+            <td>{{ b_neg }}</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>AB+</td>
+            <td>{{ ab_pos }}</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>AB-</td>
+            <td>{{ ab_neg }}</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>O+</td>
+            <td>{{ o_pos }}</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>O-</td>
+            <td>{{ o_neg }}</td>
+        </tr>
+
+    </table>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center experience"><span><h4>Appointments</h4></span></div><br>
+                    <br>
+                <div class="col-md-12">
+                        <label class="labels">Get An Appointment</label><br>
+                    </div>
+                    <div class="col-md-12"><label class="labels">Select Blood Group</label>
+                        <select id="blood_group" name = "blood_group" class="form-control">
+                            <option selected disabled>Select Blood Group </option>
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B+</option>
+                            <option>B-</option>
+                            <option>AB+</option>
+                            <option>AB-</option>
+                            <option>O+</option>
+                            <option>O-</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12"><label class="labels">Amount</label><input type="number" class="form-control" placeholder="amount" value="" id="amount" name="amount"></div>
+                     <div class="col-md-4">
+                <div class="mt-5 text-center">
+                            <button class="btn btn-primary profile-button" type="submit">Submit</button>
+                            <h6>{{msg}}</h6>
+                            <input type="hidden" id="{{ blood_bank_id }}" name="blood_bank_id" value="{{ blood_bank_id }}">
+
+                        </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</form>
+</body>
+
+</html>

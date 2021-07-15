@@ -1,0 +1,206 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>{{ name }}</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/profile_editor_css.css' %}">
+</head>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<body>
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="{% static 'images/hospital.png' %}" width="128" height="128">
+                    <span> {{ name }} </span>
+                </div>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Cabin Details</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Hospital's Name</label><h4>{{ name }}</h4></div>
+
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Cabin Id</label><h4>{{ cabin_id_for_doctor }}</h4></div>
+                        <div class="col-md-12"><label class="labels">Category</label><h4>{{ category }}</h4></div>
+                        <div class="col-md-12"><label class="labels" >Price per day</label><h4>{{ price }}</h4></div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center experience"><span><h4>Bookings</h4></span></div><br>
+                    <br>
+                <form action="check_cabin_availability_by_doctor" method="get" onsubmit="return validation()">{% csrf_token %}
+                <div class="coc-form">
+                      <div class="coc-block-row">
+                           <label class="coc-block-label" for="entrydate">Entry Date</label>
+                      <div class="coc-block">
+                      <input class="coc-input" type="date"  name="entrydate" id="entrydate">
+                </div>
+                <div class="coc-form">
+                      <div class="coc-block-row">
+                           <label class="coc-block-label" for="exitdate">Exit Date</label>
+                      <div class="coc-block">
+                      <input class="coc-input" type="date"  name="exitdate" id="exitdate">
+                </div><br>
+                          <button type="button" onclick="myFunction()">Cost</button>
+                          <p id="example"></p><br>
+                          <input type="submit" value="CHECK AVAILABILITY" >
+                          <input type="hidden" id="{{ cabin_id_for_doctor }}" name="cabin_id_for_doctor" value="{{ cabin_id_for_doctor }}">
+                </form>
+                <script>
+                    function format_date(date){
+                        var d = new Date(date),
+                            month = '' + (d.getMonth() + 1),
+                            day = ''+d.getDate(),
+                            year = d.getFullYear();
+                        if(month.length<2){
+                            month = '0' + month;
+                        }
+                        if(day.length<2){
+                            day = '0' + day;
+                        }
+                        return [year,month,day].join('-')
+                    }
+
+                    var x = format_date(new Date())
+                    document.getElementById("entrydate").min = x;
+                    document.getElementById("exitdate").min = x;
+                     function myFunction() {
+                         var fromdate = new Date(document.getElementById("entrydate").value);
+                         var dd = fromdate.getDate();
+                         var mm = fromdate.getMonth()+1; //January is 0!
+                         var yyyy = fromdate.getFullYear();
+                         if(dd < 10)  {dd = '0'+ dd;}
+                         if(mm < 10)  {mm = '0' + mm;}
+                         var fromdate1 = mm+'/'+dd+'/'+yyyy;
+
+                         var today = new Date();
+                         var ddt = today.getDate();
+                         var mmt = today.getMonth()+1; //January is 0!
+                         var yyyyt = today.getFullYear();
+                         if(ddt < 10)  {ddt = '0'+ ddt;}
+                         if(mmt < 10)  {mmt = '0' + mmt;}
+                         var today1 = mmt+'/'+ddt+'/'+yyyyt;
+
+                         var todate = new Date(document.getElementById("exitdate").value);
+                         var dd1 = todate.getDate();
+                         var mm1 = todate.getMonth()+1; //January is 0!
+                         var yyyy1 = todate.getFullYear();
+                        if(dd1 < 10) {dd1 = '0'+ dd1;}
+                        if(mm1 < 10) {mm1 = '0' + mm1;}
+                        var todate1 = mm1 + '/' + dd1 + '/' + yyyy1;
+
+                        var oneDay = 24*60*60*1000;
+                        if((fromdate1 != "") && (todate1 != "")){
+                            var fdt1 =  new Date(fromdate1);
+                            var tdt1 =  new Date(todate1);
+                            var todt1 = new Date(today1);
+                            if(fdt1 > tdt1) {
+                                alert("Start date cannot be greater than end date");
+                                return false;
+                            }
+                            else if(fdt1<todt1){
+                                alert("Start date cannot be less than current date");
+                                return false;
+                            }
+                            else if(fdt1 == "Invalid Date"){
+                                alert("Enter entry date");
+                                return false;
+                            }
+                            else if(tdt1 == "Invalid Date"){
+                                alert("Enter  exit date");
+                                return false;
+                            }
+                            else {
+                               var diffDays = Math.round(Math.abs((tdt1 - fdt1)/(oneDay)));
+                               if(diffDays==0){
+                                   alert("Entry & Exit time can't be same");
+                                   return false;
+                               }
+                               else {
+                                   document.getElementById("example").innerHTML = diffDays *{{ price }};
+                                   return true;
+                               }
+                            }
+                        }
+                     }
+                     ///
+                    function validation() {
+                         var fromdate = new Date(document.getElementById("entrydate").value);
+                         var dd = fromdate.getDate();
+                         var mm = fromdate.getMonth()+1; //January is 0!
+                         var yyyy = fromdate.getFullYear();
+                         if(dd < 10)  {dd = '0'+ dd;}
+                         if(mm < 10)  {mm = '0' + mm;}
+                         var fromdate1 = mm+'/'+dd+'/'+yyyy;
+
+                         var today = new Date();
+                         var ddt = today.getDate();
+                         var mmt = today.getMonth()+1; //January is 0!
+                         var yyyyt = today.getFullYear();
+                         if(ddt < 10)  {ddt = '0'+ ddt;}
+                         if(mmt < 10)  {mmt = '0' + mmt;}
+                         var today1 = mmt+'/'+ddt+'/'+yyyyt;
+
+                         var todate = new Date(document.getElementById("exitdate").value);
+                         var dd1 = todate.getDate();
+                         var mm1 = todate.getMonth()+1; //January is 0!
+                         var yyyy1 = todate.getFullYear();
+                        if(dd1 < 10) {dd1 = '0'+ dd1;}
+                        if(mm1 < 10) {mm1 = '0' + mm1;}
+                        var todate1 = mm1 + '/' + dd1 + '/' + yyyy1;
+
+                        var oneDay = 24*60*60*1000;
+                        if((fromdate1 != "") && (todate1 != "")){
+                            var fdt1 =  new Date(fromdate1);
+                            var tdt1 =  new Date(todate1);
+                            var todt1 = new Date(today1);
+                            if(fdt1 > tdt1) {
+                                alert("Start date cannot be greater than end date");
+                                return false;
+                            }
+                            else if(fdt1<todt1){
+                                alert("Start date cannot be less than current date");
+                                return false;
+                            }
+                            else if(fdt1 == "Invalid Date"){
+                                alert("Enter entry date");
+                                return false;
+                            }
+                            else if(tdt1 == "Invalid Date"){
+                                alert("Enter  exit date");
+                                return false;
+                            }
+                            else {
+                               var diffDays = Math.round(Math.abs((tdt1 - fdt1)/(oneDay)));
+                               if(diffDays==0){
+                                   alert("Entry & Exit time can't be same");
+                                   return false;
+                               }
+                               else {
+                                   return true;
+                               }
+                            }
+                        }
+                     }
+                </script>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</body>

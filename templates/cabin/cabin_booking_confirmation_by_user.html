@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>Doctor Appointment</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/forsearch.css' %}">
+</head>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<body style="background-color: #dde3d3">
+    <div class="main">
+        <div class="row">
+            <h1>Thank You For Booking!</h1>
+            <div class="col-md-4">
+                <div class="two">
+                    <div class="px-4 pb-5">
+
+                        <div><img class="marginauto" src="{% static 'images/checkmark.png' %}" width ="100"></div>
+                        <div><br>
+                            <a href="{% url 'go_to_user_home' %}">Go To Home</a><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

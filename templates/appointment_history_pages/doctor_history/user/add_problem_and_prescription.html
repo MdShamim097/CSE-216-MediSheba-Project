@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>Add Problem And Prescription</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <link rel="stylesheet" href="{% static 'css/profile_editor_css.css' %}">
+</head>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<body>
+<form name = "add_cabin_to_hospital_form_submission" action="add_problem_and_prescription" method="post">
+    {% csrf_token %}
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="{% static 'images/round-add-button.png' %}" width="150" height="150">
+            </div>
+        </div>
+
+
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Add Problem and Prescription</h4>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="text-right">Patient name: {{ name }}</h5>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="text-right">Email: {{ email }}</h5>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Problem</label><input type="text" class="form-control" placeholder="Problem" id="problem" name="problem"></div>
+                    <div class="col-md-12"><label class="labels">Prescription</label><input type="text" class="form-control" placeholder="Prescription" id="prescription" name="prescription"></div>
+
+                </div>
+
+                <div class="mt-5 text-center">
+                    <button class="btn btn-primary profile-button" type="submit">ADD</button>
+                    <input type="hidden" id="{{ user_id }}" name="user_id" value="{{ user_id }}">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+</form>
+</body>
+<script>
+    function validate(){
+        var price = document.forms["add_cabin_to_hospital_form_submission"]["price"].value;
+        var category = document.forms["add_cabin_to_hospital_form_submission"]["category"].value;
+        var cabin_features = document.forms["add_cabin_to_hospital_form_submission"]["cabin_features"].value;
+        if(price==="Not Specified"){
+            alert("Add price")
+            return false;
+        }
+        else if(cabin_features === "Not Specified"){
+            alert("Add Cabin Features")
+            return false;
+        }
+        else if(category === "Not Specified" ){
+            alert("Add Category")
+            return false;
+        }
+    }
+</script>
+</html>

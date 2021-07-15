@@ -1,0 +1,8 @@
+create or replace function find_doctor_name_mail(id IN MEDI_SHEBA.DOCTOR.DOCTOR_ID%TYPE)
+return VARCHAR2
+AS
+    DETAILS VARCHAR2(255);
+BEGIN
+    SELECT FIRST_NAME||' ' || LAST_NAME || ' ' || EMAIL || ' ' || SPECIALIZATION || ' ' || PHONE ||' '|| GENDER ||' '|| LOCATION  INTO DETAILS FROM MEDI_SHEBA.DOCTOR WHERE DOCTOR_ID = id;
+    RETURN DETAILS;
+end;

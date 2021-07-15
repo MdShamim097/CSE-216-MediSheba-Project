@@ -1,0 +1,1 @@
+alter table USER_BBANK_HISTORY add ORDER_DATE DATE;
